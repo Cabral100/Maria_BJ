@@ -127,7 +127,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 10000;
             display: flex;
             justify-content: center;
@@ -135,13 +135,30 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1rem;
         }
         .lightbox.show { opacity: 1; visibility: visible; }
-        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
-        .lightbox-content img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-        .lightbox-close { position: absolute; top: -40px; right: 0; color: white; font-size: 2.5rem; cursor: pointer; background: none; border: none; }
+        .lightbox-content { position: relative; }
+        .lightbox-content img {
+            display: block;
+            object-fit: contain;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 10001;
+            line-height: 1;
+        }
 
-        /* --- SEÇÃO SOBRE MURILO --- */
+        /* --- SEÇÃO SOBRE MARIA --- */
         .about-section { background-color: var(--color-white); }
         .about-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center; }
         .about-image img { width: 100%; max-width: 400px; height: 400px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
@@ -152,7 +169,7 @@
         /* --- SEÇÃO PROJETOS (GALERIA MASONRY) --- */
         .portfolio-gallery { padding: 6rem 2rem; background-color: var(--color-light-gray); }
         .gallery-columns { columns: 3; column-gap: 1.5rem; }
-        .gallery-item { margin-bottom: 1.5rem; break-inside: avoid; position: relative; overflow: hidden; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .gallery-item { margin-bottom: 1.5rem; break-inside: avoid; position: relative; overflow: hidden; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer; }
         .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
         .gallery-item:hover img { transform: scale(1.05); }
 
@@ -169,7 +186,7 @@
         .gallery-sticky-container { display: flex; gap: 1rem; max-width: 1400px; margin: 0 auto; }
         .gallery-column { flex: 1; display: flex; flex-direction: column; gap: 1rem; padding-top: 6rem; padding-bottom: 6rem; }
         .gallery-column.sticky { position: sticky; top: 160px; height: 100vh; justify-content: center; }
-        .gallery-column figure { margin: 0; width: 100%; }
+        .gallery-column figure { margin: 0; width: 100%; cursor: pointer; }
         .gallery-column img { width: 100%; height: auto; object-fit: cover; border-radius: 5px; }
         .gallery-column.sticky img { height: 100%; max-height: 30vh; }
         
@@ -231,9 +248,6 @@
             .gallery-sticky-container { flex-direction: column; }
             .gallery-sticky-container .gallery-column { padding-top: 1rem; padding-bottom: 1rem; }
             .gallery-column.sticky { position: static; height: auto; }
-            .gallery-item, .gallery-column figure {
-                cursor: pointer;
-            }
             .contact-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
@@ -250,19 +264,8 @@
             .contact-info-panel, .contact-form-panel { padding: 2rem; }
             .map-container { padding-top: 75%; }
         }
-        @media (min-width: 993px) {
-            .lightbox-content { max-width: 75%; max-height: 85%; }
-        }
     </style>
 </head>
-
-<body>
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose">&times;</button>
-            <img src="" alt="Imagem ampliada" id="lightboxImg">
-        </div>
-    </div>
 <body>
 
     <div id="preloader">
@@ -276,8 +279,8 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#home">Início</a></li>
-                    <li><a href="#sobre-murilo">Sobre Mim</a></li>
-                    <li><a href="#projetos-murilo">Projetos</a></li>
+                    <li><a href="#sobre-maria">Sobre Mim</a></li>
+                    <li><a href="#projetos-maria">Projetos</a></li>
                     <li><a href="#sobre-bj">A Empresa</a></li>
                     <li><a href="#contato">Contato</a></li>
                     <li><a href="#localizacao">Localização</a></li>
@@ -294,8 +297,8 @@
         <nav>
             <ul class="mobile-nav-menu">
                 <li><a href="#home">Início</a></li>
-                <li><a href="#sobre-murilo">Sobre Mim</a></li>
-                <li><a href="#projetos-murilo">Projetos</a></li>
+                <li><a href="#sobre-maria">Sobre Mim</a></li>
+                <li><a href="#projetos-maria">Projetos</a></li>
                 <li><a href="#sobre-bj">A Empresa</a></li>
                 <li><a href="#contato">Contato</a></li>
                 <li><a href="#localizacao">Localização</a></li>
@@ -304,7 +307,7 @@
     </div>
 
     <button id="backToTopBtn" title="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
-    <a href="https://wa.me/5511947550559" class="whatsapp-float" target="_blank" aria-label="WhatsApp"> <i class="fa-brands fa-whatsapp"></i> </a>
+    <a href="https://wa.me/5512982582412" class="whatsapp-float" target="_blank" aria-label="WhatsApp"> <i class="fa-brands fa-whatsapp"></i> </a>
     
     <main>
         <section class="hero-section" id="home">
@@ -325,14 +328,13 @@
                 <a href="#contato" class="cta-button animate-on-scroll delay-3">Fale Comigo</a>
             </div>
             <div class="hero-dots">
-                <!-- Dots serão gerados via JS -->
             </div>
         </section>
 
-        <section class="about-section" id="sobre-murilo">
+        <section class="about-section" id="sobre-maria">
             <div class="container about-container">
                 <div class="about-image animate-on-scroll">
-                    <img src="img_geral/maria4.png" alt="Foto de Murilo" loading="lazy" decoding="async">
+                    <img src="img_geral/maria4.png" alt="Foto de Maria" loading="lazy" decoding="async">
                 </div>
                 <div class="about-text">
                     <div class="section-title-wrapper animate-on-scroll"> <h2 class="section-title">Sobre Mim</h2> </div>
@@ -342,7 +344,7 @@
             </div>
         </section>
 
-        <section class="portfolio-gallery" id="projetos-murilo">
+        <section class="portfolio-gallery" id="projetos-maria">
             <div class="container">
                 <div class="section-title-wrapper animate-on-scroll"> <h2 class="section-title">Meus Projetos em Destaque</h2> </div>
                 <div class="gallery-columns">
@@ -355,10 +357,10 @@
                     <div class="gallery-item animate-on-scroll"><img src="img_geral/maria7.png" alt="Projeto 7" loading="lazy" decoding="async"></div>
                     <div class="gallery-item animate-on-scroll delay-1"><img src="img_geral/maria8.png" alt="Projeto 8" loading="lazy" decoding="async"></div>
                     <div class="gallery-item animate-on-scroll delay-2"><img src="img_geral/maria9.png" alt="Projeto 9" loading="lazy" decoding="async"></div>
-                    <div class="gallery-item animate-on-scroll"><img src="img_geral/maria10.png" alt="Projeto 7" loading="lazy" decoding="async"></div>
-                    <div class="gallery-item animate-on-scroll delay-1"><img src="img_geral/maria11.png" alt="Projeto 8" loading="lazy" decoding="async"></div>
-                    <div class="gallery-item animate-on-scroll delay-2"><img src="img_geral/maria12.png" alt="Projeto 9" loading="lazy" decoding="async"></div>
-                    <div class="gallery-item animate-on-scroll"><img src="img_geral/maria13.png" alt="Projeto 7" loading="lazy" decoding="async"></div>   
+                    <div class="gallery-item animate-on-scroll"><img src="img_geral/maria10.png" alt="Projeto 10" loading="lazy" decoding="async"></div>
+                    <div class="gallery-item animate-on-scroll delay-1"><img src="img_geral/maria11.png" alt="Projeto 11" loading="lazy" decoding="async"></div>
+                    <div class="gallery-item animate-on-scroll delay-2"><img src="img_geral/maria12.png" alt="Projeto 12" loading="lazy" decoding="async"></div>
+                    <div class="gallery-item animate-on-scroll"><img src="img_geral/maria13.png" alt="Projeto 13" loading="lazy" decoding="async"></div>   
                 </div>
             </div>
         </section>
@@ -399,6 +401,14 @@
                     <figure class="animate-on-scroll gallery-item"><img src="img_geral/murilo10.png" alt="Projeto Geral 5" loading="lazy" decoding="async"></figure>
                     <figure class="animate-on-scroll gallery-item"><img src="img/murilo7.png" alt="Projeto Geral 6" loading="lazy" decoding="async"></figure>
                 </div>
+                <div class="gallery-column">
+                    <figure class="animate-on-scroll gallery-item"><img src="img_geral/patricia_bj1.png" alt="Projeto Geral 5" loading="lazy" decoding="async"></figure>
+                    <figure class="animate-on-scroll gallery-item"><img src="img_geral/patricia_bj2.png" alt="Projeto Geral 6" loading="lazy" decoding="async"></figure>
+                </div>
+                <div class="gallery-column">
+                    <figure class="animate-on-scroll gallery-item"><img src="img_geral/patricia_bj3.png" alt="Projeto Geral 5" loading="lazy" decoding="async"></figure>
+                    <figure class="animate-on-scroll gallery-item"><img src="img_geral/patricia_bj5.png" alt="Projeto Geral 6" loading="lazy" decoding="async"></figure>
+                </div>
             </div>
         </section>
 
@@ -417,7 +427,7 @@
                         <h2>Entre em Contato</h2>
                         <div class="contact-info-item">
                             <i class="fa-brands fa-whatsapp"></i>
-                            <span>(11) 94755-0559</span>
+                            <span>(12) 98258-2412</span>
                         </div>
                         <div class="contact-info-item">
                             <i class="fa-solid fa-envelope"></i>
@@ -451,11 +461,11 @@
         </section>
 
         <section class="map-section" id="localizacao">
-             <div class="container">
+               <div class="container">
                 <div class="section-title-wrapper animate-on-scroll"> <h2 class="section-title">Onde nos Encontrar</h2> </div>
                 <div class="map-container animate-on-scroll delay-1">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.237847332463!2d-46.205402299999996!3d-23.5239463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cdd808c219a4b5%3A0x6d94e98c6b1369f0!2sBJ%20ESQUADRIAS%20DE%20ALUMINIO!5e0!3m2!1spt-BR!2sbr!4v1759255228462!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                </div>
-             </div>
+               </div>
         </section>
 
         <section class="faq-section" id="faq">
@@ -498,12 +508,19 @@
         <div class="footer-social">
             <a href="#" aria-label="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="#" aria-label="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://wa.me/5511947550559" aria-label="WhatsApp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://wa.me/5512982582412" aria-label="WhatsApp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
         <div class="footer-bottom">
-            <p>Desenvolvido por <a href="https://wa.me/5511960573657?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Murilo%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20seus%20servi%C3%A7os%20de%20desenvolvimento." target="_blank">Lucas Cabral</a></p>
+            <p>Desenvolvido por <a href="https://wa.me/5511960573657?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Maria%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20seus%20servi%C3%A7os%20de%20desenvolvimento." target="_blank">Lucas Cabral</a></p>
         </div>
     </footer>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="Imagem ampliada do projeto" id="lightboxImg">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Fechar Imagem"><i class="fa-light fa-xmark"></i></button>
+        </div>
+    </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -592,9 +609,9 @@
                 const email = formData.get('email');
                 const phone = formData.get('phone');
                 const message = formData.get('message');
-                const companyPhone = '5511947550559'; 
+                const companyPhone = '5512982582412'; 
 
-                let whatsappMessage = `*Novo Pedido de Orçamento (Portfólio Murilo)*\n\n`;
+                let whatsappMessage = `*Novo Pedido de Orçamento (Portfólio Maria)*\n\n`;
                 whatsappMessage += `*Nome:* ${name}\n`;
                 whatsappMessage += `*E-mail:* ${email}\n`;
                 if (phone) whatsappMessage += `*Telefone:* ${phone}\n`;
@@ -696,24 +713,30 @@
         }
 
         // Lógica do Lightbox
-        if (lightbox) {
-            document.querySelectorAll('.gallery-item').forEach(item => {
+        if (lightbox && lightboxImg && lightboxClose) {
+            document.querySelectorAll('.gallery-item, .gallery-column figure').forEach(item => {
                 item.addEventListener('click', () => {
-                    // Ativar lightbox apenas em telas menores (mobile/tablet)
-                    if (window.innerWidth <= 992) {
-                        const imgSrc = item.querySelector('img').src;
-                        lightboxImg.src = imgSrc;
-                        lightbox.classList.add('show');
-                        body.classList.add('no-scroll');
-                    }
+                    const imgSrc = item.querySelector('img').src;
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('show');
+                    body.classList.add('no-scroll');
                 });
             });
 
-            const closeLightbox = () => { lightbox.classList.remove('show'); body.classList.remove('no-scroll'); };
+            const closeLightbox = () => { 
+                lightbox.classList.remove('show'); 
+                body.classList.remove('no-scroll'); 
+            };
+            
             lightboxClose.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+            lightbox.addEventListener('click', (e) => { 
+                if (e.target === lightbox) {
+                    closeLightbox();
+                } 
+            });
         }
     });
     </script>
 </body>
 </html>
+
